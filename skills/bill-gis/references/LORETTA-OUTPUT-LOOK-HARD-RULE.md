@@ -63,8 +63,9 @@ Chad: use these tools or there will be a huge gap. Template way required.
 **Skip any stage = FAIL / HELD.** Do not deliver the packet.
 
 **Fallback (document explicitly, never silent):**
-- If **Higgsfield** is unavailable: record the outage, substitute **Grok image generator** for polish stage 3+4, and still require **QGIS + Blender**.
-- QGIS + Blender are **never** optional.
+- If **Higgsfield** is unavailable: record the outage, substitute **Grok image generator** for polish stage 3+4 only. **QGIS + Blender remain mandatory.**
+- **Blender is NON-SUBSTITUTABLE.** No 3D sheet without a Blender render in provenance. Do **not** replace Blender with QGIS 2D/3D exports, Higgsfield alone, Grok image gen alone, ArcGIS Urban, or any other tool. Missing Blender = **FAIL / HELD** (same severity as missing QGIS).
+- Higgsfield→Grok fallback is **polish-only**. It never skips or replaces Blender.
 - Never drop a stage silently. Missing evidence stays **HELD**.
 
 ---
@@ -76,7 +77,7 @@ For **each** of 3D-1, 3D-2, 3D-3, verify and record:
 | Check | Pass criteria |
 |---|---|
 | QGIS source | Path or export ID for geometry / elev tint / hillshade / FEMA / FG as applicable |
-| Blender | Render file / frame for that sheet |
+| Blender | Render file / frame for that sheet — **required; no substitute** |
 | Higgsfield | Run/job ID **or** documented unavailable + Grok-substitute note |
 | Grok image gen | Final composite used on the sheet |
 
@@ -90,6 +91,17 @@ Also fail delivery if:
 
 ---
 
+
+
+## Blender (non-substitutable)
+
+Chad (2026-10-06): "make sure Blender is also used."
+
+- Every **3D-1 / 3D-2 / 3D-3** sheet must include a **Blender** render in provenance (tint+hillshade draped on real QGIS geometry, **3×** VE, perspective).
+- **No fallback skips Blender.** Higgsfield→Grok fallback applies to polish stages only.
+- Forbidden substitutes for Blender: QGIS renders alone, Grok/Higgsfield image gen alone, ArcGIS Urban/3D, screenshots of other viewers.
+- QA: missing Blender render for any 3D sheet = **FAIL / HELD**.
+
 ## Skill pointers
 
 - `.grok/skills/bill-gis/SKILL.md`
@@ -102,3 +114,4 @@ Also fail delivery if:
 ## Change log
 
 - 2026-10-06 — Chad HARD RULE: nine-sheet look + G/3D mandatory; 3D design approved; four-tool pipeline QGIS→Blender→Higgsfield→Grok; QA provenance; Higgsfield fallback documented.
+- 2026-10-06 follow-up — Blender NON-SUBSTITUTABLE for 3D-1/2/3; no Blender skip; polish-only fallback for Higgsfield.
