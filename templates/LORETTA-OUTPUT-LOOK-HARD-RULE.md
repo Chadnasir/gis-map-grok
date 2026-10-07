@@ -35,6 +35,17 @@ Every vacant-land screening packet **must** deliver these nine sheets **in this 
 - Footer every sheet: **PRELIMINARY — NOT FOR CONSTRUCTION** plus desktop-screening disclaimer
 - Gold-look styling (see `/home/box/skills/bill-gis-gold/` craft 04–09 / 13 / 14)
 
+
+**Mandatory elements on EVERY sheet (Chad template lock 2026-10-06):**
+- Sheet number and title in the header
+- APN list, area, CRS, datum in the footer block
+- **DESKTOP STUDY / AUDITED REV 1** and **FOR CHAD NASIR** attribution
+- **DataSources** table including at minimum: USGS 3DEP DEM, FEMA NFHL, USDA NRCS SSURGO, HELIX figures (source-reported), **USGS 3DEP LiDAR point cloud** (project name, survey date, point density), aerial imagery source — missing LiDAR row = **FAIL**
+- Scale bar and north arrow (2D); 3D: perspective **NOT TO SCALE**, VE **3×**
+- Disclaimer: **DESKTOP GIS SCREENING - NOT A SURVEY, GEOTECHNICAL INVESTIGATION OR ENGINEERED GRADING / DRAINAGE PLAN** (plus PRELIMINARY — NOT FOR CONSTRUCTION)
+
+**Canonical reference:** this file (`templates/LORETTA-OUTPUT-LOOK-HARD-RULE.md`) + Eve content provenance `templates/LORETTA-GIS-REPORT-TEMPLATE.md` @ `29956765`. Box mirrors: `/home/box/skills/bill-gis/LORETTA-OUTPUT-LOOK-HARD-RULE.md`, `/home/box/skills/bill-gis-template/`. Adapt CONTENT to site (parcel count, features); never invent new sheet layouts, skip sheets, or drop 3Ds.
+
 **Content rules still mandatory (from Loretta / v2):**
 - Three acreage bases labeled (recorded / GIS analysis / tract)
 - Earthwork slope-sign reversal check when volumes reported
@@ -146,6 +157,7 @@ Chad (2026-10-06): "make sure Blender is also used."
 
 ## Change log
 
+- 2026-10-06 — Chad: ALL deliverables must follow Loretta nine-sheet template EXACTLY (structure/order/naming/footer/DataSources/disclaimer); adapt content only; same weight as pipeline + LiDAR.
 - 2026-10-06 — Chad HARD RULE: nine-sheet look + G/3D mandatory; 3D design approved; pipeline QGIS→Blender→Higgsfield→Grok; QA provenance; Higgsfield fallback documented.
 - 2026-10-06 follow-up — Blender NON-SUBSTITUTABLE for 3D-1/2/3; no Blender skip; polish-only fallback for Higgsfield.
 - 2026-10-06 — Chad HARD RULE: USGS 3DEP LiDAR point cloud mandatory data source; LiDAR DEM authoritative where available; DataSources LiDAR row QA = FAIL if missing.
