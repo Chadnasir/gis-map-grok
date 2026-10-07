@@ -3,13 +3,14 @@
 **Version:** 2.0 — Bill GIS adoption pass (2026-10-06)
 **Source v1:** Eve template from GIS report *Loretta development_compressed (2).pdf* — Leon/Scott Road four-parcel site, Riverside County (APNs 466-220-013, -014, -015, -016), prepared 09/22/2026 for Chad Nasir. Upstream: `templates/LORETTA-GIS-REPORT-TEMPLATE.md` @ commit 29956765.
 **Status:** DEFAULT vacant-land / land-development desktop screening packet for Bill GIS.
+**OUTPUT LOOK HARD RULE (superseding):** `templates/LORETTA-OUTPUT-LOOK-HARD-RULE.md` — nine sheets incl. G-001 + all 3Ds mandatory; four-tool 3D pipeline QGIS→Blender→Higgsfield→Grok; deviate = HELD. This v2 file adds GIS audit companions (FEMA↔HELIX, EX-2, GT-1, QA) **on top of** that look — never replaces it.
 **Rule:** Adapt site-specific numbers; keep sheet structure, acreage discipline, earthwork audit, disclaimers, and QA gates. No API keys in sheets or notes. Do not auto-email or auto-post maps.
 
 ---
 
 ## 1. What this packet is
 
-- **Core nine GIS sheets** (G-001 → 3D-3) plus, when the site needs them, **companion sheets** EX-2 (utilities), GT-1 (geotech/fault screen), and a FEMA↔HELIX reconciliation memo on G-001 or as a DataSources addendum.
+- **Nine GIS sheets** (G-001 → 3D-3) are **mandatory** per `LORETTA-OUTPUT-LOOK-HARD-RULE.md`. Add **companion sheets** EX-2 (utilities), GT-1 (geotech/fault screen), and a FEMA↔HELIX reconciliation memo on G-001 **after** the nine — never instead of them.
 - Separate Tentative Tract Map (when one exists) and third-party bio/JD figures (e.g. HELIX) are companions — reproduce unchanged; never redraw as if field-verified.
 - **Every GIS sheet carries the same limit:** desktop screening only — NOT a survey, geotechnical investigation, or engineered grading/drainage plan.
 
@@ -27,7 +28,7 @@
 | 8 | 3D-2 | 3D topographic model — elevation tint + hillshade, flood overlay, vertical exaggeration stated |
 | 9 | 3D-3 | 3D topo + grading — finish-grade scenario, cut/fill labels, frontage |
 
-**Companion sheets (add when data exists; do not invent):**
+**Companion sheets (after the nine; add when data exists; do not invent; never replace a core sheet):**
 
 | Sheet | When |
 |---|---|
@@ -108,7 +109,8 @@ Gold craft: #07 JD, #08 veg, #05 alliances.
 - 3D-2: elevation tint + hillshade, flood overlay, elev-range legend.
 - 3D-3: finish-grade surface for chosen scenario; cut/fill at extrema; FG formula disclosed; max cut/fill callouts.
 - Notes/sources: DEM, imagery, datum, exaggeration, desktop-screening disclaimer.
-- **Craft note:** Prefer gold 2D topo (#14) for primary decision sheets. 3D sheets are perspective exhibits only — never substitute for EX-1 / GR-1. No ArcGIS Urban as the deliverable bar.
+- **HARD RULE:** 3D-1/2/3 are **required** (Chad approved). Pipeline: **QGIS → Blender → Higgsfield → Grok image generator**. QGIS alone = FAIL. Higgsfield down → document + Grok substitute; QGIS+Blender still mandatory. Record provenance per sheet before delivery.
+- Craft: gold 2D topo (#14) still for EX-1/GR-1 decision density; 3D sheets match Loretta visual quality. No ArcGIS Urban as the deliverable bar.
 
 ---
 
@@ -192,8 +194,11 @@ Packet fails QA if any item is true:
 | Q8 | Missing desktop-screening + PRELIMINARY disclaimers on any sheet |
 | Q9 | API keys, tokens, or credentials in sheet text, DataSources, or commit |
 | Q10 | Auto-email or auto-post of maps (forbidden) |
+| Q11 | Any of the nine Loretta sheets missing or reordered |
+| Q12 | Any 3D sheet missing QGIS→Blender→Higgsfield (or documented Grok substitute)→Grok provenance |
+| Q13 | Anti-3D omission or QGIS-only 3D (Chad hard rule) |
 
-**PASS** = all Q1–Q10 clear. Stamp DRAFT until CoS/Chad accept. Hold client posts until asked.
+**PASS** = all Q1–Q13 clear. Deviate from OUTPUT LOOK = **HELD**. Stamp DRAFT until CoS/Chad accept. Hold client posts until asked.
 
 ---
 
@@ -212,7 +217,8 @@ Packet fails QA if any item is true:
 | Location | Role |
 |---|---|
 | `templates/LORETTA-GIS-REPORT-TEMPLATE.md` | v1 (Eve) — keep as provenance |
-| `templates/LORETTA-GIS-REPORT-TEMPLATE-v2.md` | **This file — default vacant-land screening** |
+| `templates/LORETTA-OUTPUT-LOOK-HARD-RULE.md` | **Chad HARD RULE — nine-sheet look + four-tool 3D pipeline** |
+| `templates/LORETTA-GIS-REPORT-TEMPLATE-v2.md` | **This file — GIS audit/companions on top of look** |
 | `.grok/skills/bill-gis/SKILL.md` | Points here for nine-sheet default |
 | `skills/bill-gis/SKILL.md` | Same |
 | `.grok/skills/bill-gis/references/LORETTA-GIS-REPORT-TEMPLATE-v2.md` | Symlink-equivalent copy for skill-local resolve |
@@ -223,6 +229,7 @@ Packet fails QA if any item is true:
 
 ## 17. Change log (v1 → v2)
 
+- 2026-10-06 later: Chad HARD RULE pointer + Q11–Q13; 3D four-tool pipeline mandatory; companions never replace core nine.
 - Added FEMA AE ↔ HELIX/JD creek-corridor reconciliation checklist (§11).
 - Promoted EX-2 utilities companion to required broker-DD companion (§9).
 - Added GT-1 geotech/fault screening placeholder (§10).
