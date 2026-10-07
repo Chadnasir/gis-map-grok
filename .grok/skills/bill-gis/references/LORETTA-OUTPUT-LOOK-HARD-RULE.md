@@ -8,7 +8,7 @@
 
 ---
 
-## HARD RULE — two parts (both required)
+## HARD RULE — four parts (all required)
 
 ### (A) Nine-sheet OUTPUT LOOK — match Loretta exactly
 
@@ -35,6 +35,17 @@ Every vacant-land screening packet **must** deliver these nine sheets **in this 
 - Footer every sheet: **PRELIMINARY — NOT FOR CONSTRUCTION** plus desktop-screening disclaimer
 - Gold-look styling (see `/home/box/skills/bill-gis-gold/` craft 04–09 / 13 / 14)
 
+
+**Mandatory elements on EVERY sheet (Chad template lock 2026-10-06):**
+- Sheet number and title in the header
+- APN list, area, CRS, datum in the footer block
+- **DESKTOP STUDY / AUDITED REV 1** and **FOR CHAD NASIR** attribution
+- **DataSources** table including at minimum: USGS 3DEP DEM, FEMA NFHL, USDA NRCS SSURGO, HELIX figures (source-reported), **USGS 3DEP LiDAR point cloud** (project name, survey date, point density), aerial imagery source — missing LiDAR row = **FAIL**
+- Scale bar and north arrow (2D); 3D: perspective **NOT TO SCALE**, VE **3×**
+- Disclaimer: **DESKTOP GIS SCREENING - NOT A SURVEY, GEOTECHNICAL INVESTIGATION OR ENGINEERED GRADING / DRAINAGE PLAN** (plus PRELIMINARY — NOT FOR CONSTRUCTION)
+
+**Canonical reference:** this file (`templates/LORETTA-OUTPUT-LOOK-HARD-RULE.md`) + Eve content provenance `templates/LORETTA-GIS-REPORT-TEMPLATE.md` @ `29956765`. Box mirrors: `/home/box/skills/bill-gis/LORETTA-OUTPUT-LOOK-HARD-RULE.md`, `/home/box/skills/bill-gis-template/`. Adapt CONTENT to site (parcel count, features); never invent new sheet layouts, skip sheets, or drop 3Ds.
+
 **Content rules still mandatory (from Loretta / v2):**
 - Three acreage bases labeled (recorded / GIS analysis / tract)
 - Earthwork slope-sign reversal check when volumes reported
@@ -47,39 +58,71 @@ Companion sheets (EX-2 utilities, GT-1 geotech) may be **added** after the nine;
 
 ---
 
-### (B) Four-tool 3D pipeline — MANDATORY (order + ownership)
+### (B) 3D pipeline — FINAL HARD ORDER (Chad 2026-10-06)
 
-Chad: use these tools or there will be a huge gap. Template way required.
-
-**3D-1 / 3D-2 / 3D-3 must use the full pipeline in order.** QGIS alone is **not** enough.
+**Order is locked:** **QGIS → Blender → Higgsfield → ReRender**.
 
 | Stage | Tool | Ownership / what it produces |
 |---|---|---|
-| 1 | **QGIS** | Real geometries only: parcels, elevation tint, hillshade, contours, FEMA AE, finish-grade surface, cut/fill rasters/vectors. Source of truth for geometry and elevation. |
-| 2 | **Blender** | 3D render: tint+hillshade draped, **3×** vertical exaggeration, perspective camera. |
-| 3 | **Higgsfield** | Polish on Blender 3D renders. |
-| 4 | **Grok image generator** | Final polish / composite into sheet chrome. |
+| 1 | **QGIS** | Real geometries only: parcels, elevation tint, hillshade, contours, FEMA AE, finish-grade surface, cut/fill rasters/vectors. Source of truth for geometry and elevation (LiDAR DEM when available — see §C). |
+| 2 | **Blender** | 3D render: tint+hillshade draped, **3×** vertical exaggeration, perspective camera. **NON-SUBSTITUTABLE.** |
+| 3 | **Higgsfield** | First polish on Blender 3D renders. **Mandatory before ReRender. Do not drop.** |
+| 4 | **ReRender** | Second polish **after** Higgsfield. Required on **client deliverables**. |
 
 **Skip any stage = FAIL / HELD.** Do not deliver the packet.
 
-**Fallback (document explicitly, never silent):**
-- If **Higgsfield** is unavailable: record the outage, substitute **Grok image generator** for polish stage 3+4 only. **QGIS + Blender remain mandatory.**
-- **Blender is NON-SUBSTITUTABLE.** No 3D sheet without a Blender render in provenance. Do **not** replace Blender with QGIS 2D/3D exports, Higgsfield alone, Grok image gen alone, ArcGIS Urban, or any other tool. Missing Blender = **FAIL / HELD** (same severity as missing QGIS).
-- Higgsfield→Grok fallback is **polish-only**. It never skips or replaces Blender.
+**Rules:**
+- **Blender is NON-SUBSTITUTABLE.** No 3D sheet without a Blender render in provenance. Do **not** replace Blender with QGIS 2D/3D exports, Higgsfield alone, ReRender alone, Grok image gen alone, ArcGIS Urban, or any other tool. Missing Blender = **FAIL / HELD**.
+- **Higgsfield is mandatory before ReRender.** Do not skip or remove Higgsfield. ReRender does **not** replace Higgsfield, QGIS, or Blender.
+- **ReRender goes AFTER Higgsfield** — never before, never instead of.
+- On **client deliverables**, missing ReRender provenance = **FAIL**.
+- Optional final composite into sheet chrome may still use Grok image generator **after** ReRender; it never replaces stages 1–4.
 - Never drop a stage silently. Missing evidence stays **HELD**.
+
+**ReRender plan tier — CONFIRMED PRO (Chad 2026-10-06):**
+- Chad confirmed **ReRender Pro monthly ($45/mo)** — commercial rights, **no watermark**. Account: https://rerenderai.com (Chad’s).
+- **Client 3D ReRender HELD is LIFTED** — Pro frames are approved for client deliverables.
+- **Free tier** (if ever used) = watermarked frames remain **internal-draft only**.
+- **QA:** every client 3D sheet must record **Higgsfield then ReRender** job IDs in order. Missing ReRender provenance on a client deliverable = **FAIL**. Secrets via `RERENDER_*` env refs only — never paste keys into repo/sheets.
+
+
+---
+
+### (C) USGS 3DEP LiDAR POINT CLOUD — MANDATORY data source (Chad 2026-10-06)
+
+**Same weight as (A) nine-sheet structure and (B) 3D pipeline.**
+
+#### Source (public domain — US Government, no license cost)
+- Registry: https://registry.opendata.aws/usgs-lidar/
+- Public EPT (no AWS account): `s3://usgs-lidar-public` (us-west-2) — `aws s3 ls --no-sign-request s3://usgs-lidar-public/`
+- Requester-pays raw LAZ: `s3://usgs-lidar` — only if public EPT lacks tiles
+- STAC: https://usgs-lidar-stac.s3-us-west-2.amazonaws.com/ept/catalog.json
+- Tools: PDAL / QGIS read LAZ; PDAL reads EPT; LidarExplorer https://www.usgs.gov/tools/lidarexplorer
+
+#### Rules
+1. **Download LAZ (or EPT crop) covering the site AOI** before EX-1 / GR-1 / 3D terrain work. Store under `/workspace/lidar/<site>/` (or repo `lidar/`) with README: project name, survey date, point density, CRS, download command, file list + sizes + SHA256.
+2. **Authoritative elevation where available:** generate LiDAR-derived DEM (PDAL or QGIS Processing). Compare to USGS 3DEP 1 m DEM. Report vertical Δ at sampled high/low. If material change to earthwork (GR-1) or Scenario B slope numbers → recompute and **flag**.
+3. **3D concept / 3D-1/2/3:** Blender terrain must use LiDAR-derived surface when LiDAR covers the site. Document LiDAR provenance in the 3d-concept README (alongside design-source provenance).
+4. **DataSources row on EVERY sheet** (title block / DataSources table): include USGS 3DEP LiDAR project name, survey year, density, CRS, and tile/path citation.
+5. **QA gate:** any deliverable missing the LiDAR DataSources row = **FAIL / HELD**.
+
+#### Riverside County coverage note (verified 2026-10-06)
+- Named `USGS_LPC_CA_Riverside_B1_2019` / `B2_2019` cover **eastern** RivCo only — do **not** assume they cover western city / Menifee sites.
+- Indiana Avenue (−117.50, 33.88) and Scott/Leon Menifee (~−117.12, 33.64) fall in **`USGS_LPC_CA_SoCal_Wildfires_B1_2018_LAS_2019`** (STAC geometry verified). Always confirm with STAC/LidarExplorer per site.
 
 ---
 
 ## QA gate — 3D provenance (before delivery)
 
-For **each** of 3D-1, 3D-2, 3D-3, verify and record:
+For **each** of 3D-1, 3D-2, 3D-3, verify and record **in order**:
 
 | Check | Pass criteria |
 |---|---|
 | QGIS source | Path or export ID for geometry / elev tint / hillshade / FEMA / FG as applicable |
 | Blender | Render file / frame for that sheet — **required; no substitute** |
-| Higgsfield | Run/job ID **or** documented unavailable + Grok-substitute note |
-| Grok image gen | Final composite used on the sheet |
+| Higgsfield | Run/job ID — **mandatory before ReRender; do not drop** |
+| ReRender | Run/job ID — **required on client deliverables** (missing = FAIL) |
+| LiDAR | DataSources row citing USGS 3DEP LiDAR project + path (when site covered) |
 
 Missing any stage for any 3D sheet → **do not deliver**; flag HELD with the missing stage named.
 
@@ -88,18 +131,21 @@ Also fail delivery if:
 - Chrome missing title block / PRELIMINARY footer
 - Acreage bases unlabeled, earthwork without slope-sign audit (when CY reported), inventing FEMA/NWI/AP/FHSZ buffers
 - API keys in output; auto-email or auto-post of maps
+- Missing USGS 3DEP LiDAR DataSources row on any sheet
+- LiDAR available for site but EX-1/GR-1/3D terrain ignores it without documented HELD
+- Missing Higgsfield provenance before ReRender
+- Missing ReRender provenance on a client deliverable
+- Pipeline order violated (ReRender before Higgsfield, or either before Blender)
 
 ---
-
-
 
 ## Blender (non-substitutable)
 
 Chad (2026-10-06): "make sure Blender is also used."
 
 - Every **3D-1 / 3D-2 / 3D-3** sheet must include a **Blender** render in provenance (tint+hillshade draped on real QGIS geometry, **3×** VE, perspective).
-- **No fallback skips Blender.** Higgsfield→Grok fallback applies to polish stages only.
-- Forbidden substitutes for Blender: QGIS renders alone, Grok/Higgsfield image gen alone, ArcGIS Urban/3D, screenshots of other viewers.
+- **No fallback skips Blender.** Higgsfield and ReRender are polish stages only; they never replace Blender.
+- Forbidden substitutes for Blender: QGIS renders alone, Grok/Higgsfield/ReRender image gen alone, ArcGIS Urban/3D, screenshots of other viewers.
 - QA: missing Blender render for any 3D sheet = **FAIL / HELD**.
 
 ## Skill pointers
@@ -113,5 +159,10 @@ Chad (2026-10-06): "make sure Blender is also used."
 
 ## Change log
 
-- 2026-10-06 — Chad HARD RULE: nine-sheet look + G/3D mandatory; 3D design approved; four-tool pipeline QGIS→Blender→Higgsfield→Grok; QA provenance; Higgsfield fallback documented.
+- 2026-10-06 — Chad: ReRender **Pro monthly ($45/mo) CONFIRMED** — commercial, no watermark; client 3D ReRender HELD **LIFTED**; QA records Higgsfield then ReRender on every 3D sheet.
+- 2026-10-06 — Chad: ReRender account confirmed logged-in; plan tier UNCONFIRMED (do not assume Pro); free=draft-only; missing tier confirm on client 3D = FAIL.
+- 2026-10-06 — Chad: ALL deliverables must follow Loretta nine-sheet template EXACTLY (structure/order/naming/footer/DataSources/disclaimer); adapt content only; same weight as pipeline + LiDAR.
+- 2026-10-06 — Chad HARD RULE: nine-sheet look + G/3D mandatory; 3D design approved; pipeline QGIS→Blender→Higgsfield→Grok; QA provenance; Higgsfield fallback documented.
 - 2026-10-06 follow-up — Blender NON-SUBSTITUTABLE for 3D-1/2/3; no Blender skip; polish-only fallback for Higgsfield.
+- 2026-10-06 — Chad HARD RULE: USGS 3DEP LiDAR point cloud mandatory data source; LiDAR DEM authoritative where available; DataSources LiDAR row QA = FAIL if missing.
+- 2026-10-06 — Chad: ReRender added as post-Higgsfield polish; pipeline FINAL ORDER = QGIS→Blender→Higgsfield→ReRender; both polish stages required in provenance; missing ReRender on client deliverable = FAIL; Higgsfield mandatory before ReRender; tier TBD (free = draft-only / Pro for client).
