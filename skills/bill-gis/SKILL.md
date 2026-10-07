@@ -12,7 +12,7 @@ Full text: `templates/LORETTA-OUTPUT-LOOK-HARD-RULE.md`. Deviate = **HELD / FAIL
 
 **(A) Nine sheets in order — all required:** G-001 → EX-1 → GR-1 → HELIX Fig.5 → SO-1 → HELIX Fig.4 → 3D-1 → 3D-2 → 3D-3. G cover and all three 3Ds mandatory. No skip/merge/optional. Chad approved 3D — no anti-3D opinions. Chrome: map left, sidebar right; title block; PRELIMINARY every sheet; gold-look. Content: acreage bases, earthwork slope-sign audit, FEMA AE+BFE, HELIX caveat, HSG/farmland, sensitive veg.
 
-**(B) Four-tool 3D pipeline — mandatory:** 1) QGIS (real geometries, tint, hillshade, FEMA, FG, cut/fill) → 2) Blender (3× VE perspective) → 3) Higgsfield (polish) → 4) Grok image generator (final composite). QGIS alone is not enough. Skip any = FAIL. If Higgsfield unavailable: document + Grok substitute; QGIS+Blender still required. Never silent drop.
+**(B) Four-tool 3D pipeline — mandatory:** 1) QGIS (real geometries, tint, hillshade, FEMA, FG, cut/fill) → 2) Blender (3× VE perspective) → 3) Higgsfield (polish) → 4) Grok image generator (final composite). QGIS alone is not enough. Skip any = FAIL. **Blender NON-SUBSTITUTABLE** — no QGIS/image-gen substitute; missing Blender = FAIL. Higgsfield→Grok fallback is polish-only; never replaces Blender. Never silent drop.
 
 **QA:** each 3D sheet must show QGIS / Blender / Higgsfield (or documented substitute) / Grok provenance. Missing stage or sheet → do not deliver; HELD.
 

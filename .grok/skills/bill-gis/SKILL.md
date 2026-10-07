@@ -3,7 +3,7 @@ name: bill-gis
 description: Commercial land-development GIS for Riverside County and the Inland Empire. Use when the user asks for a GIS map, vegetation map, biological map, traffic study map, industrial truck map, assessor map, CEQA map, population density map, flood map, MSHCP, Map My County, vacant-land screening, Loretta GIS report, or Bill GIS. Also use for /bill-gis.
 user-invocable: true
 metadata:
-  version: "1.2"
+  version: "1.3"
   author: Chad Nasir
 ---
 
@@ -42,7 +42,7 @@ G-001 and all three 3D sheets are **mandatory**. No skip, merge, or optional. Ch
 3. **Higgsfield** — polish on 3D renders  
 4. **Grok image generator** — final polish / composite  
 
-**Fallback:** if Higgsfield unavailable, document it and use Grok as substitute polish; **QGIS + Blender still mandatory**. Never silent drop.
+**Fallback:** if Higgsfield unavailable, document it and use Grok as substitute polish only. **Blender is NON-SUBSTITUTABLE** — no QGIS-only, image-gen-only, or other substitute for Blender. Missing Blender = FAIL/HELD. Never silent drop.
 
 ### QA before delivery
 
