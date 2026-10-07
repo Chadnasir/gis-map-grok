@@ -79,10 +79,11 @@ Companion sheets (EX-2 utilities, GT-1 geotech) may be **added** after the nine;
 - Optional final composite into sheet chrome may still use Grok image generator **after** ReRender; it never replaces stages 1–4.
 - Never drop a stage silently. Missing evidence stays **HELD**.
 
-**ReRender plan tier (TBD — Chad):**
-- Free vs Pro **not yet confirmed**.
-- If **Pro with commercial rights** confirmed → note here; allow client-facing ReRender outputs.
-- If **free tier only** → watermarked frames are **internal-draft only**; **Pro required for client deliverables**. Flag HELD on client packets that rely on free-tier watermarked ReRender.
+**ReRender plan tier — UNCONFIRMED (Chad 2026-10-06):**
+- Chad is logged into ReRender (https://rerenderai.com). **Free vs Pro is UNCONFIRMED — do not assume Pro.**
+- **Free tier** = watermarked frames are **internal-draft only**.
+- **Pro** (commercial rights) **required for client deliverables**.
+- **QA:** missing plan-tier confirmation on a **client** 3D sheet = **FAIL / HELD**. Do not ship client 3D sheets on assumed-Pro or free-tier watermarked frames.
 
 ---
 
@@ -157,6 +158,7 @@ Chad (2026-10-06): "make sure Blender is also used."
 
 ## Change log
 
+- 2026-10-06 — Chad: ReRender account confirmed logged-in; plan tier UNCONFIRMED (do not assume Pro); free=draft-only; missing tier confirm on client 3D = FAIL.
 - 2026-10-06 — Chad: ALL deliverables must follow Loretta nine-sheet template EXACTLY (structure/order/naming/footer/DataSources/disclaimer); adapt content only; same weight as pipeline + LiDAR.
 - 2026-10-06 — Chad HARD RULE: nine-sheet look + G/3D mandatory; 3D design approved; pipeline QGIS→Blender→Higgsfield→Grok; QA provenance; Higgsfield fallback documented.
 - 2026-10-06 follow-up — Blender NON-SUBSTITUTABLE for 3D-1/2/3; no Blender skip; polish-only fallback for Higgsfield.

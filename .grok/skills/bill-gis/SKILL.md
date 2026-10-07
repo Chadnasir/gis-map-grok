@@ -3,7 +3,7 @@ name: bill-gis
 description: Commercial land-development GIS for Riverside County and the Inland Empire. Use when the user asks for a GIS map, vegetation map, biological map, traffic study map, industrial truck map, assessor map, CEQA map, population density map, flood map, MSHCP, Map My County, vacant-land screening, Loretta GIS report, or Bill GIS. Also use for /bill-gis.
 user-invocable: true
 metadata:
-  version: "1.6"
+  version: "1.7"
   author: Chad Nasir
 ---
 
@@ -42,7 +42,7 @@ G-001 and all three 3D sheets are **mandatory**. No skip, merge, or optional. Ch
 3. **Higgsfield** — first polish — **mandatory before ReRender; do not drop**  
 4. **ReRender** — second polish **after** Higgsfield — required on client deliverables (missing = FAIL)
 
-ReRender does not replace QGIS, Blender, or Higgsfield. ReRender tier TBD: free/watermarked = internal draft only; Pro required for client deliverables.
+ReRender does not replace QGIS, Blender, or Higgsfield. ReRender plan tier **UNCONFIRMED** (Chad logged in at rerenderai.com — do not assume Pro). Free = internal draft only (watermarked); Pro required for client deliverables; missing tier confirm on client 3D = FAIL.
 
 ### (C) USGS 3DEP LiDAR — mandatory data source
 
