@@ -86,6 +86,10 @@ Companion sheets (EX-2 utilities, GT-1 geotech) may be **added** after the nine;
 - **QA:** every client 3D sheet must record **Higgsfield then ReRender** job IDs in order. Missing ReRender provenance on a client deliverable = **FAIL**. Secrets via `RERENDER_*` env refs only — never paste keys into repo/sheets.
 
 
+**Canonical 3D LOOK template (Chad 2026-10-06):** `TTM39456_3D_Lots_Homes_Rev5.pdf` (SHA-256 `e3e46bf81c50fbfc12ee4eded15f4d8a6d39b255a71efb8bad4a5f28502e7218`). Box: `/workspace/loretta-gis-template-adoption-20261006/3d-template/` and `/home/box/skills/bill-gis-template/3d-look/`. Match isometric aerial terrain, callouts, right sidebar, DESKTOP STUDY footer for **3D-1/2/3** and separate multifamily 3D concept sheets. Sample Notes may stop at Higgsfield; ReRender remains final polish + dual provenance.
+
+
+
 ---
 
 ### (C) USGS 3DEP LiDAR POINT CLOUD — MANDATORY data source (Chad 2026-10-06)
@@ -159,6 +163,7 @@ Chad (2026-10-06): "make sure Blender is also used."
 
 ## Change log
 
+- 2026-10-06 — Chad: canonical 3D LOOK = TTM39456_3D_Lots_Homes_Rev5.pdf (SHA e3e46bf8…); match sheet-for-sheet on 3D-1/2/3 + multifamily concept; ReRender final polish after Higgsfield.
 - 2026-10-06 — Chad: ReRender **Pro monthly ($45/mo) CONFIRMED** — commercial, no watermark; client 3D ReRender HELD **LIFTED**; QA records Higgsfield then ReRender on every 3D sheet.
 - 2026-10-06 — Chad: ReRender account confirmed logged-in; plan tier UNCONFIRMED (do not assume Pro); free=draft-only; missing tier confirm on client 3D = FAIL.
 - 2026-10-06 — Chad: ALL deliverables must follow Loretta nine-sheet template EXACTLY (structure/order/naming/footer/DataSources/disclaimer); adapt content only; same weight as pipeline + LiDAR.
