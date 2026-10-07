@@ -79,11 +79,12 @@ Companion sheets (EX-2 utilities, GT-1 geotech) may be **added** after the nine;
 - Optional final composite into sheet chrome may still use Grok image generator **after** ReRender; it never replaces stages 1–4.
 - Never drop a stage silently. Missing evidence stays **HELD**.
 
-**ReRender plan tier — UNCONFIRMED (Chad 2026-10-06):**
-- Chad is logged into ReRender (https://rerenderai.com). **Free vs Pro is UNCONFIRMED — do not assume Pro.**
-- **Free tier** = watermarked frames are **internal-draft only**.
-- **Pro** (commercial rights) **required for client deliverables**.
-- **QA:** missing plan-tier confirmation on a **client** 3D sheet = **FAIL / HELD**. Do not ship client 3D sheets on assumed-Pro or free-tier watermarked frames.
+**ReRender plan tier — CONFIRMED PRO (Chad 2026-10-06):**
+- Chad confirmed **ReRender Pro monthly ($45/mo)** — commercial rights, **no watermark**. Account: https://rerenderai.com (Chad’s).
+- **Client 3D ReRender HELD is LIFTED** — Pro frames are approved for client deliverables.
+- **Free tier** (if ever used) = watermarked frames remain **internal-draft only**.
+- **QA:** every client 3D sheet must record **Higgsfield then ReRender** job IDs in order. Missing ReRender provenance on a client deliverable = **FAIL**. Secrets via `RERENDER_*` env refs only — never paste keys into repo/sheets.
+
 
 ---
 
@@ -158,6 +159,7 @@ Chad (2026-10-06): "make sure Blender is also used."
 
 ## Change log
 
+- 2026-10-06 — Chad: ReRender **Pro monthly ($45/mo) CONFIRMED** — commercial, no watermark; client 3D ReRender HELD **LIFTED**; QA records Higgsfield then ReRender on every 3D sheet.
 - 2026-10-06 — Chad: ReRender account confirmed logged-in; plan tier UNCONFIRMED (do not assume Pro); free=draft-only; missing tier confirm on client 3D = FAIL.
 - 2026-10-06 — Chad: ALL deliverables must follow Loretta nine-sheet template EXACTLY (structure/order/naming/footer/DataSources/disclaimer); adapt content only; same weight as pipeline + LiDAR.
 - 2026-10-06 — Chad HARD RULE: nine-sheet look + G/3D mandatory; 3D design approved; pipeline QGIS→Blender→Higgsfield→Grok; QA provenance; Higgsfield fallback documented.
