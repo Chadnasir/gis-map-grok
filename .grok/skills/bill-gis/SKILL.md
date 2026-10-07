@@ -3,7 +3,7 @@ name: bill-gis
 description: Commercial land-development GIS for Riverside County and the Inland Empire. Use when the user asks for a GIS map, vegetation map, biological map, traffic study map, industrial truck map, assessor map, CEQA map, population density map, flood map, MSHCP, Map My County, vacant-land screening, Loretta GIS report, or Bill GIS. Also use for /bill-gis.
 user-invocable: true
 metadata:
-  version: "1.3"
+  version: "1.6"
   author: Chad Nasir
 ---
 
@@ -33,20 +33,24 @@ Load this skill for GIS, maps, APN, zoning, MSHCP, vegetation, biological, traff
 
 G-001 and all three 3D sheets are **mandatory**. No skip, merge, or optional. Chrome: map left, sidebar right; full title block; north + scale (2D); PRELIMINARY — NOT FOR CONSTRUCTION every sheet; gold-look. Content: three acreage bases; earthwork slope-sign reversal check; FEMA AE+BFE; HELIX caveat; HSG/drainage/farmland; sensitive veg flags.
 
-### (B) Four-tool 3D pipeline — mandatory order
+### (B) 3D pipeline — FINAL HARD ORDER
 
-**3D-1 / 3D-2 / 3D-3 must use all four stages.** QGIS alone is not enough. Skip any = FAIL / HELD.
+**QGIS → Blender → Higgsfield → ReRender.** Skip any = FAIL / HELD.
 
 1. **QGIS** — real geometries: parcels, elev tint, hillshade, contours, FEMA AE, finish-grade, cut/fill  
-2. **Blender** — 3D render (tint+hillshade draped, 3× VE, perspective)  
-3. **Higgsfield** — polish on 3D renders  
-4. **Grok image generator** — final polish / composite  
+2. **Blender** — 3D render (tint+hillshade draped, 3× VE, perspective) — **NON-SUBSTITUTABLE**  
+3. **Higgsfield** — first polish — **mandatory before ReRender; do not drop**  
+4. **ReRender** — second polish **after** Higgsfield — required on client deliverables (missing = FAIL)
 
-**Fallback:** if Higgsfield unavailable, document it and use Grok as substitute polish only. **Blender is NON-SUBSTITUTABLE** — no QGIS-only, image-gen-only, or other substitute for Blender. Missing Blender = FAIL/HELD. Never silent drop.
+ReRender does not replace QGIS, Blender, or Higgsfield. ReRender tier TBD: free/watermarked = internal draft only; Pro required for client deliverables.
+
+### (C) USGS 3DEP LiDAR — mandatory data source
+
+Same weight as (A)/(B). Download site LAZ/EPT; LiDAR DEM authoritative elevation where available; compare to 3DEP 1 m; every sheet DataSources must cite LiDAR (missing = FAIL). Western RivCo sites often covered by `USGS_LPC_CA_SoCal_Wildfires_B1_2018_LAS_2019` — verify per site; do not assume Riverside B1/B2 2019 covers city/Menifee.
 
 ### QA before delivery
 
-For each 3D sheet record provenance: QGIS source, Blender render, Higgsfield job (or documented substitute), Grok composite. Missing stage → do not deliver; flag HELD. Missing sheet or tool = FAIL.
+For each 3D sheet record provenance **in order**: QGIS source, Blender render, Higgsfield job ID, ReRender job ID, LiDAR DataSources row. Missing stage, wrong order, missing ReRender on client deliverable, or missing LiDAR row → do not deliver; FAIL/HELD.
 
 ## Vacant-land packet (structure + look)
 
@@ -64,7 +68,7 @@ For each 3D sheet record provenance: QGIS source, Blender render, Higgsfield job
 1. Geocode the address or APN with find_address_candidates (outWkid 4326). Print address, x, y, score. Never invent coordinates.
 2. Open the published GIS for the theme before drawing anything.
 3. Stack constraints from Map My County and RivCoView.
-4. Vacant-land packets: build the nine Loretta sheets; run the four-tool 3D pipeline for 3D-1/2/3; pass QA provenance before delivery.
+4. Vacant-land packets: pull USGS 3DEP LiDAR; build the nine Loretta sheets; run QGIS→Blender→Higgsfield→ReRender for 3D-1/2/3; pass QA provenance before delivery.
 5. If the user wants a rendered PNG for a single theme, call map_with_overlay. Attach the image. Caption the theme. Auto-fit extent. Imagery uses referenceDetails=all.
 6. One theme per exhibit. Title block, north, scale, source URL, acreage or ADT table.
 7. If a connector cannot supply official FEMA, CNEL, NLCD, or hillshade, say so and point to the official viewer.
@@ -93,7 +97,8 @@ For each 3D sheet record provenance: QGIS source, Blender render, Higgsfield job
 - Repo catalogs https://github.com/Chadnasir/gis-map-grok (RIVERSIDE.md STUDIES.md THEMES.md MORE_THEMES.md TOOLS.md)
 - Loretta hard rule https://github.com/Chadnasir/gis-map-grok/blob/main/templates/LORETTA-OUTPUT-LOOK-HARD-RULE.md
 - Loretta v2 template https://github.com/Chadnasir/gis-map-grok/blob/main/templates/LORETTA-GIS-REPORT-TEMPLATE-v2.md
+- USGS lidar EPT s3://usgs-lidar-public ; STAC https://usgs-lidar-stac.s3-us-west-2.amazonaws.com/ept/catalog.json
 
 ## Tools
 
-find_address_candidates, reverse_geocode, buffer, map_with_overlay, solve_route (Trucking Time for industrial), elevation_at_locations, get_topic_fields, describe_location, web_search, browse_page; vacant-land 3D: QGIS → Blender → Higgsfield → Grok image generator.
+find_address_candidates, reverse_geocode, buffer, map_with_overlay, solve_route (Trucking Time for industrial), elevation_at_locations, get_topic_fields, describe_location, web_search, browse_page; vacant-land 3D: QGIS → Blender → Higgsfield → ReRender.
